@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL,
+});
 
 ReactDOM.render(
   <React.StrictMode>
