@@ -1,7 +1,7 @@
 {
   "name": "react-todo",
   "version": "0.1.0",
-  "homepage": "https://KingSatur.github.io/todo-app",
+  "homepage": "/todo-app",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",

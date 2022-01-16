@@ -32,7 +32,7 @@ export const Heading = () => {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} style={{ gap: '1rem' }}>
             {pages.map((page, i) => (
-              <Link key={i} to={page?.path} style={{ textDecoration: 'none' }}>
+              <Link key={i} to={`${process.env.PUBLIC_URL}${page?.path}`} style={{ textDecoration: 'none' }}>
                 <HeadingButton key={page?.label} sx={{ my: 2, color: 'white', display: 'block' }}>
                   {page?.label}
                 </HeadingButton>
