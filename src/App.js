@@ -2,7 +2,7 @@ import './App.css';
 import { Heading } from './components/Heading';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ContextProvider } from './context/GlobalContext';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<TodoList />} index />
           <Route path="/add" element={<TodoForm />} />
           <Route path="/edit/:id" element={<TodoForm />} />
+          <Route path="" element={<Navigate to="/" />} />
         </Routes>
       </ContextProvider>
     </div>

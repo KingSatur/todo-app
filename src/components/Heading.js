@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { AiFillFileAdd } from 'react-icons/ai';
+import { Typography } from '@mui/material';
 
 const pages = [
   { label: 'ToDo list', path: '', icon: AiFillFileAdd },
@@ -26,6 +27,7 @@ const HeadingButton = styled(Button)({
 export const Heading = () => {
   return (
     <AppBar position="static">
+      <Typography>ToDoApp</Typography>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} style={{ gap: '1rem' }}>
