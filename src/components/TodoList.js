@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { globlalContext } from '../context/GlobalContext';
+import { globalContext } from '../context/GlobalContext';
 import TodoItem from './TodoItem';
 
 export const TodoList = () => {
-  const { toDoList } = useContext(globlalContext);
+  const { toDoList } = useContext(globalContext);
   return (
     <div
       style={{
@@ -12,8 +12,8 @@ export const TodoList = () => {
         gap: '1rem',
       }}
     >
-      {toDoList?.map((m) => {
-        return <TodoItem />;
+      {toDoList?.map((toDo, i) => {
+        return <TodoItem key={i} {...toDo} />;
       })}
     </div>
   );

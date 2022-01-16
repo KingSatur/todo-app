@@ -29,16 +29,10 @@ export const Heading = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box
-            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
-            style={{ gap: '1rem' }}
-          >
-            {pages.map((page) => (
-              <Link to={page?.path} style={{ textDecoration: 'none' }}>
-                <HeadingButton
-                  key={page?.label}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} style={{ gap: '1rem' }}>
+            {pages.map((page, i) => (
+              <Link key={i} to={page?.path} style={{ textDecoration: 'none' }}>
+                <HeadingButton key={page?.label} sx={{ my: 2, color: 'white', display: 'block' }}>
                   {page?.label}
                 </HeadingButton>
               </Link>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -11,6 +11,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { globalContext } from '../context/GlobalContext';
 
 const BootstrapButton = styled(Button)({
   boxShadow: 'none',
@@ -49,7 +50,9 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-export default function TodoItem() {
+export default function TodoItem({ title, description, completed, id }) {
+  const { removeToDo } = useContext(globalContext);
+
   return (
     <Card
       style={{
@@ -65,27 +68,25 @@ export default function TodoItem() {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
-            Live From Space
+            {title}
           </Typography>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
-            Mac Miller
+          <Typography variant="subtitle1" color="text.secondary" component="div">
+            {description}
           </Typography>
         </CardContent>
       </Box>
       <Box
         style={{
           display: 'flex',
-          'flex-direction': 'column',
-          'justify-content': 'center',
+          flexDirection: 'column',
+          justifyContent: 'center',
           gap: '.5rem',
         }}
       >
         <BootstrapButton variant="contained">Edit</BootstrapButton>
-        <BootstrapButton variant="contained">Delete</BootstrapButton>
+        <BootstrapButton onClick={() => removeToDo(id)} variant="contained">
+          Delete
+        </BootstrapButton>
       </Box>
     </Card>
   );

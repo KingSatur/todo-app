@@ -5,15 +5,19 @@ import { Heading } from './components/Heading';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
 import { Route, Routes } from 'react-router-dom';
+import { ContextProvider } from './context/GlobalContext';
 
 function App() {
   return (
     <div>
-      <Heading />
-      <Routes>
-        <Route path="/" element={<TodoList />} index />
-        <Route path="/add" element={<TodoForm />} />
-      </Routes>
+      <ContextProvider>
+        <Heading />
+
+        <Routes>
+          <Route path="/" element={<TodoList />} index />
+          <Route path="/add" element={<TodoForm />} />
+        </Routes>
+      </ContextProvider>
     </div>
   );
 }
