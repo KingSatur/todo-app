@@ -2,7 +2,7 @@ import './App.css';
 import { Heading } from './components/Heading';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ContextProvider } from './context/GlobalContext';
 
 function App() {
