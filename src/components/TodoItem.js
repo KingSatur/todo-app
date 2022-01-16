@@ -85,7 +85,7 @@ export default function TodoItem({ title, description, done, id }) {
           gap: '.5rem',
         }}
       >
-        <Link to={`${process.env.PUBLIC_URL}/edit/${id}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/edit/${id}`} style={{ textDecoration: 'none' }}>
           <BootstrapButton variant="contained">Edit</BootstrapButton>
         </Link>
         <BootstrapButton onClick={() => removeToDo(id)} variant="contained">
