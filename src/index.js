@@ -2,19 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { HashRouter } from 'react-router-dom';
 // import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-
-export const history = createBrowserHistory({
-  basename: process.env.PUBLIC_URL,
-});
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
