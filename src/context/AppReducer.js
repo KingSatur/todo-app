@@ -8,8 +8,30 @@ export default function appReducer(state, action) {
         toDoList: [...state?.toDoList?.filter((m, i) => m?.id !== action?.payload)],
       };
     case 'EDIT_TODO':
-      break;
+      return {
+        ...state,
+        toDoList: [
+          ...state?.toDoList?.map((toDo) => {
+            if (toDo?.id === action?.payload?.id) {
+              toDo = { ...toDo, ...action?.payload };
+            }
+            return toDo;
+          }),
+        ],
+      };
+    case 'TOGGLE_DONE':
+      return {
+        ...state,
+        toDoList: [
+          ...state?.toDoList?.map((toDo) => {
+            if (toDo?.id === action?.payload) {
+              toDo.done = !toDo.done;
+            }
+            return toDo;
+          }),
+        ],
+      };
     default:
-      break;
+      return { ...state };
   }
 }

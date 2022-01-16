@@ -10,8 +10,8 @@ import { styled } from '@mui/material/styles';
 import { AiFillFileAdd } from 'react-icons/ai';
 
 const pages = [
-  { label: 'Todo list', path: '', icon: AiFillFileAdd },
-  { label: 'Create List', path: '/add' },
+  { label: 'ToDo list', path: '', icon: AiFillFileAdd },
+  { label: 'Create ToDo', path: '/add' },
 ];
 
 const HeadingButton = styled(Button)({

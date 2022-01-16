@@ -12,10 +12,10 @@ function App() {
     <div>
       <ContextProvider>
         <Heading />
-
         <Routes>
           <Route path="/" element={<TodoList />} index />
           <Route path="/add" element={<TodoForm />} />
+          <Route path="/edit/:id" element={<TodoForm />} />
         </Routes>
       </ContextProvider>
     </div>

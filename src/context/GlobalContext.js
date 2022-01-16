@@ -33,7 +33,13 @@ export const ContextProvider = ({ children }) => {
     dispatch({ type: 'EDIT_TODO', payload: task });
   };
 
+  const toggleDone = function (id) {
+    dispatch({ type: 'TOGGLE_DONE', payload: id });
+  };
+
   return (
-    <globalContext.Provider value={{ ...state, addToDo, removeToDo, editToDo }}>{children}</globalContext.Provider>
+    <globalContext.Provider value={{ ...state, addToDo, removeToDo, editToDo, toggleDone }}>
+      {children}
+    </globalContext.Provider>
   );
 };

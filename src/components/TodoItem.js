@@ -1,17 +1,13 @@
 import React, { useContext } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { globalContext } from '../context/GlobalContext';
+import { Link } from 'react-router-dom';
+import Checkbox from '@mui/material/Checkbox';
 
 const BootstrapButton = styled(Button)({
   boxShadow: 'none',
@@ -50,8 +46,8 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-export default function TodoItem({ title, description, completed, id }) {
-  const { removeToDo } = useContext(globalContext);
+export default function TodoItem({ title, description, done, id }) {
+  const { removeToDo, toggleDone } = useContext(globalContext);
 
   return (
     <Card
@@ -68,11 +64,17 @@ export default function TodoItem({ title, description, completed, id }) {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
-            {title}
+            Title: {title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {description}
+            Description: {description}
           </Typography>
+          <Box style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Checkbox onClick={() => toggleDone(id)} checked={done} sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
+            <Typography variant="subtitle1" color="text.secondary" component="div">
+              {done ? 'You have finished this toDo' : 'Incomplete toDo'}
+            </Typography>
+          </Box>
         </CardContent>
       </Box>
       <Box
@@ -83,7 +85,9 @@ export default function TodoItem({ title, description, completed, id }) {
           gap: '.5rem',
         }}
       >
-        <BootstrapButton variant="contained">Edit</BootstrapButton>
+        <Link to={`/edit/${id}`} style={{ textDecoration: 'none' }}>
+          <BootstrapButton variant="contained">Edit</BootstrapButton>
+        </Link>
         <BootstrapButton onClick={() => removeToDo(id)} variant="contained">
           Delete
         </BootstrapButton>

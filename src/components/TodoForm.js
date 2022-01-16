@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { globalContext } from '../context/GlobalContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BootstrapButton = styled(Button)({
   boxShadow: 'none',
@@ -45,14 +45,23 @@ const BootstrapButton = styled(Button)({
 });
 
 export const TodoForm = () => {
-  const { addToDo } = useContext(globalContext);
-
+  const { addToDo, editToDo, toDoList } = useContext(globalContext);
+  //Get id from params
+  const { id } = useParams();
   const [toDo, settoDo] = useState({
     title: '',
     description: '',
+    done: false,
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const toDo = toDoList.find((m) => m?.id === Number(id));
+    if (toDo) {
+      settoDo({ ...toDo });
+    }
+  }, [id, toDoList]);
 
   const handleChange = function (e) {
     settoDo({ ...toDo, [e.target.name]: e.target.value });
@@ -60,7 +69,11 @@ export const TodoForm = () => {
 
   const handleSaveToDo = function (e) {
     e?.preventDefault();
-    addToDo(toDo);
+    if (id) {
+      editToDo(toDo);
+    } else {
+      addToDo(toDo);
+    }
     navigate('/');
   };
 
@@ -91,6 +104,7 @@ export const TodoForm = () => {
           <TextField
             onChange={handleChange}
             id="outlined-basic"
+            value={toDo?.title}
             name="title"
             label="Write toDO title"
             variant="outlined"
@@ -98,6 +112,7 @@ export const TodoForm = () => {
           <TextField
             onChange={handleChange}
             name="description"
+            value={toDo?.description}
             label="Write toDO description"
             id="outlined-multiline-static"
             multiline
@@ -105,9 +120,15 @@ export const TodoForm = () => {
           />
         </Box>
         <Box>
-          <BootstrapButton type="submit" variant="contained">
-            Create
-          </BootstrapButton>
+          {id ? (
+            <BootstrapButton type="submit" variant="contained">
+              Edit
+            </BootstrapButton>
+          ) : (
+            <BootstrapButton type="submit" variant="contained">
+              Create
+            </BootstrapButton>
+          )}
         </Box>
       </form>
     </div>
