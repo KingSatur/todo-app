@@ -11,10 +11,9 @@ function App() {
       <ContextProvider>
         <Heading />
         <Routes>
-          <Route path={process.env.PUBLIC_URL + '/'} element={<TodoList />} index />
-          <Route path={process.env.PUBLIC_URL + '/add'} element={<TodoForm />} />
-          <Route path={process.env.PUBLIC_URL + '/edit/:id'} element={<TodoForm />} />
-          <Route path="*" element={<Navigate to={process.env.PUBLIC_URL + '/'} />} />
+          <Route path={'/'} element={<TodoList />} index />
+          <Route path={'/add'} element={<TodoForm />} />
+          <Route path={'/edit/:id'} element={<TodoForm />} />
         </Routes>
       </ContextProvider>
     </div>

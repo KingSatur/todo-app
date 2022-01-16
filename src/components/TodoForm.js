@@ -60,6 +60,12 @@ export const TodoForm = () => {
     const toDo = toDoList.find((m) => m?.id === Number(id));
     if (toDo) {
       settoDo({ ...toDo });
+    } else {
+      settoDo({
+        title: '',
+        description: '',
+        done: false,
+      });
     }
   }, [id, toDoList]);
 
